@@ -6,7 +6,7 @@ $data = array();
 if ($received_data->action == 'insertTodo') {
     $data = array(
         ':desc' => $received_data->ntodoDesc,
-        ':status' => $received_data->ntodoStatus,
+        ':status' => $received_data->ntodostatus
     );
     $query = "
  INSERT INTO todolist (todoDescription,status) VALUES (:desc,:status)
@@ -15,15 +15,17 @@ if ($received_data->action == 'insertTodo') {
     $statement = $connect->prepare($query);
 
     $statement->execute($data);
-
-    echo json_encode($query);
+    $output = array(
+        'message' => 'Data Updated'
+    );
+    echo json_encode($output);
 }
 
-if ($received_data->action == 'updateTodo') {
+if ($received_data->action == 'editTodo') {
     $data = array(
         ':todoId' => $received_data->todoID,
         ':todoDescription' => $received_data->todoDes,
-        ':status'   => $received_data->todoStatus,
+        ':status'   => $received_data->todoStatus
     );
     $query = "
 UPDATE todolist
@@ -39,20 +41,21 @@ WHERE id = :todoId
         'message' => 'Data Updated'
     );
 
-    echo json_encode($output);
+    echo json_encode($query);
 }
 if ($received_data->action == 'deleteTodo') {
     $data = array(
         ':todoId' => $received_data->todoID,
     );
     $query = "
-    DELETE FROM todolist WHERE id = :todoId
-";
+    DELETE FROM todolist WHERE id = :todoId";
     $statement = $connect->prepare($query);
 
     $statement->execute($data);
 
-    $output = $received_data->todoID;
+    $output = array(
+        'message' => 'Data Updated'
+    );
 
     echo json_encode($output);
 }

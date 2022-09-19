@@ -210,6 +210,7 @@
                             todoID: v.id
                         }).then(function(response) {
                             console.log(response.data);
+                            application.gettodo();
                         });
             },
             submitnewtodo: function() {
@@ -222,6 +223,7 @@
                         }).then(function(response) {
                             application.closenewtodo();
                             console.log(response.data);
+                            application.gettodo();
                         });
                     }
                 }
@@ -245,6 +247,7 @@
                         }).then(function(response) {
                             application.closeedittodo();
                             console.log(response.data);
+                            application.gettodo();
                         });
                     }
                 }
