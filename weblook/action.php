@@ -1,5 +1,5 @@
 <?php
-$connect = new PDO("mysql:host=localhost;dbname=clientinformation_db;charset=utf8", "root", "");
+$connect = new PDO("mysql:host=localhost;dbname=weblook;charset=utf8", "root", "");
 $received_data = json_decode(file_get_contents("php://input"));
 $data = array();
 if ($received_data->action == 'insertquestion') {
